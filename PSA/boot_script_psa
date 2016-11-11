@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Place this in /etc/network/if-up.d/
+
+PSA_HOME="/home/psa"
+
+if [ -z "$PSA_HOME" ]; then
+    echo "error: 'PSA_HOME' is not set." >&2
+    exit 0
+fi
+
+if [ ! -d "$PSA_HOME" ]; then
+    echo "error: 'PSA_HOME' is not a valid directory." >&2
+    exit 0
+fi
+
+[ "$IFACE" = 'eth2' ] || exit 0
+
+ifconfig eth2 mtu 1496
+dhclient -1 eth2
+cd $PSA_HOME/pythonScript
+ip=$(ifconfig eth2 | grep "inet addr" | awk '{print $2}' | cut -d: -f2)
+gunicorn -k gevent -b $ip:8080 --log-file $PSA_HOME/GUNICORNz.log --log-level debug psaEE:app &

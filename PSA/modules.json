@@ -1,0 +1,16 @@
+{
+    "modules": [
+        {
+            "name": "count",
+            "module": "modules/Count.py"
+        },
+        {
+            "name": "detect-MHR",
+            "module": "modules/MHR.py"
+        },
+        {
+            "name": "load-config",
+            "module": "modules/BroLoader.py"
+        }
+    ]
+}

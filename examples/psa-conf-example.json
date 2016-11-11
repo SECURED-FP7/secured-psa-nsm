@@ -1,0 +1,76 @@
+{
+
+   "rules": [
+     { "id": "rule1",
+       "event": "EVENT_CONNECTION",
+       "operation": "count",
+       "parameters": [
+           { "type": "object",
+             "value": "OBJ_CONNECTION"
+           }
+       ],
+       "action": "log",
+       "conditions": [
+          { "type":  "interval",
+            "value": 30 },
+          { "type": "threshold",
+            "value": 50 },
+          { "type": "destination",
+            "value": { "address": "91.197.85.151" }
+          }
+       ]
+     },
+     { "id": "rule2",
+       "event": "EVENT_CONNECTION",
+       "operation": "count",
+       "parameters": [
+           { "type": "object",
+             "value": "OBJ_CONNECTION"
+           }
+       ],
+       "action": "log",
+       "conditions": [
+          { "type":  "interval",
+            "value": 30 },
+          { "type": "threshold",
+            "value": 50 },
+          { "type": "destination",
+            "value": { "address": "81.209.67.238" }
+          }
+       ]
+     },
+     { "id": "rule3",
+       "event": "EVENT_CONNECTION",
+       "operation": "count",
+       "parameters": [
+           { "type": "object",
+             "value": "OBJ_CONNECTION"
+           }
+       ],
+       "action": "log",
+       "conditions": [
+          { "type":  "interval",
+            "value": 30 },
+          { "type": "threshold",
+            "value": 50 },
+          { "type": "destination_port",
+            "value": { "port": 80 }
+          }
+       ]
+     },
+     { "id": "rule4",
+       "event": "EVENT_FILE",
+       "operation": "detect-MHR",
+       "parameters": [ ],
+       "action": "log",
+       "conditions": [
+          { "type": "mime-type",
+            "value": "application/pdf"
+          },
+          { "type": "mime-type",
+             "value": "application/x-dosexec"
+          }
+       ]
+     }
+   ]
+}

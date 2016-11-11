@@ -1,0 +1,37 @@
+{
+    "rules": [
+      { "id": "rule1",
+        "event": "EVENT_CONNECTION",
+        "operation": "count.bro",
+        "parameters": [
+            { "type": "object",
+              "value": "OBJ_CONNECTION"
+            }
+        ],
+        "action": "log",
+        "conditions": [
+           { "type":  "interval",
+             "value": 30 },
+           { "type": "threshold",
+             "value": 50 },
+           { "type": "source",
+             "value": { "address": "123.45.67.89" }
+           }
+        ]
+      },
+      { "id": "rule2",
+        "event": "EVENT_FILE",
+        "operation": "detect-MHR.bro",
+        "parameters": [ ],
+        "action": "log",
+        "conditions": [
+           { "type": "mime-type",
+             "value": "application/pdf"
+           },
+           { "type": "mime-type",
+              "value": "application/x-dosexec"
+           }
+        ]
+      }
+    ]
+}
